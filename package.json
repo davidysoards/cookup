@@ -1,0 +1,23 @@
+{
+  "name": "cookup",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run watch",
+    "build": "rm -rf sound_share/static/css && cross-env NODE_ENV=production postcss src/css/tailwind.css -o sound_share/static/css/styles.css",
+    "watch": "postcss src/css/tailwind.css -o sound_share/static/css/styles.css --watch"
+  },
+  "author": "David Soards",
+  "license": "ISC",
+  "dependencies": {
+    "cssnano": "^4.1.10",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^8.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "tailwindcss": "^1.9.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}
