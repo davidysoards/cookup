@@ -12,7 +12,7 @@
     <header class="bg-gray-800 p-4">
       <div class="container flex justify-between">
         <div class="grid grid-cols-2 gap-4 items-center">
-          <a href="{% url 'home' %}" class="text-xl">COOKUP</a>
+          <a href="{% url 'home' %}" class="text-xl mr-4">COOKUP</a>
           <a href="{% url 'about' %}" class="">About</a>
         </div>
         <div class="grid grid-cols-2 gap-4 items-center">
@@ -21,11 +21,13 @@
         </div>
       </div>
     </header>
-    <div class="container flex">
-      <main class="w-2/3">
+    <div class="container max-w-screen-lg md:flex py-4 px-4 lg:px-0">
+      <main class="bg-gray-800 md:w-2/3 md:mr-6  p-4">
         {% block content %} {% endblock content %}
       </main>
-      <aside class="w-1/3">Sidebar</aside>
+      <aside class="bg-gray-800 hidden md:block md:w-1/3 p-4">
+        <h2>Sidebar</h2>
+      </aside>
     </div>
   </body>
 </html>
