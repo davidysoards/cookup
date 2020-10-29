@@ -11,11 +11,14 @@
   <body class="bg-gray-900">
     <header class="bg-gray-800 p-4">
       <div class="container flex justify-between">
-        <a href="{% url 'home' %}" class="text-xl">COOKUP</a>
-        <ul class="grid grid-cols-2 gap-4">
-          <li>Login</li>
-          <li>Register</li>
-        </ul>
+        <div class="grid grid-cols-2 gap-4 items-center">
+          <a href="{% url 'home' %}" class="text-xl">COOKUP</a>
+          <a href="{% url 'about' %}" class="">About</a>
+        </div>
+        <div class="grid grid-cols-2 gap-4 items-center">
+          <a href="#">Login</a>
+          <a href="#">Register</a>
+        </div>
       </div>
     </header>
     <div class="container flex">
