@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run watch",
     "build": "rm -rf sound_share/static/css && cross-env NODE_ENV=production postcss src/css/tailwind.css -o sound_share/static/css/styles.css",
-    "watch": "postcss src/css/tailwind.css -o sound_share/static/css/styles.css --watch"
+    "watch": "postcss src/css/tailwind.css -o sound_share/static/css/styles.css -w"
   },
   "author": "David Soards",
   "license": "ISC",

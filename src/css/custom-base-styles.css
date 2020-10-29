@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply text-gray-800;
+  @apply text-white;
 }
 
 h1 {
@@ -27,5 +27,5 @@ p {
 }
 
 a {
-  @apply text-blue-700 font-semibold;
+  @apply font-semibold;
 }
