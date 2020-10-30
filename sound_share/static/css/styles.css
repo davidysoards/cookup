@@ -588,10 +588,6 @@ video {
   height: auto;
 }
 
-html {
-  font-size: 18px;
-}
-
 body {
   --text-opacity: 1;
   color: #fff;
