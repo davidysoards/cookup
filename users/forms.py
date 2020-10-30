@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
+    required_css_class = "required"
 
     class Meta:
         model = User
