@@ -25,3 +25,19 @@ p {
 a {
   @apply font-semibold;
 }
+
+input {
+  @apply text-gray-800 px-2 py-1;
+}
+
+label {
+  @apply block mt-4 mb-1;
+}
+
+.btn {
+  @apply px-4 py-2 bg-blue-500 text-gray-800 uppercase font-bold;
+}
+
+.helptext {
+  @apply block text-xs mt-1;
+}
