@@ -18,20 +18,25 @@ h4 {
   @apply font-bold leading-tight;
 }
 
-p {
+/* p {
   @apply mb-4;
-}
+} */
 
 a {
   @apply font-semibold;
 }
 
 input {
-  @apply text-gray-800 px-2 py-1;
+  @apply text-gray-800 px-2 py-1 block;
 }
 
 label {
-  @apply block mt-4 mb-1;
+  @apply mt-6 mb-1 relative inline-block;
+  &.required::after {
+    content: '*';
+    position: absolute;
+    right: -0.6em;
+  }
 }
 
 .btn {
@@ -39,5 +44,5 @@ label {
 }
 
 .helptext {
-  @apply block text-xs mt-1;
+  @apply block text-xs -mt-4;
 }

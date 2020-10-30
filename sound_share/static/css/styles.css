@@ -617,15 +617,16 @@ h4 {
   line-height: 1.25;
 }
 
-p {
-  margin-bottom: 1rem;
-}
+/* p {
+  @apply mb-4;
+} */
 
 a {
   font-weight: 600;
 }
 
 input {
+  display: block;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
@@ -636,10 +637,17 @@ input {
 }
 
 label {
-  display: block;
+  display: inline-block;
   margin-bottom: 0.25rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  position: relative;
 }
+
+label.required::after {
+    content: '*';
+    position: absolute;
+    right: -0.6em;
+  }
 
 .btn {
   --bg-opacity: 1;
@@ -659,7 +667,7 @@ label {
 .helptext {
   display: block;
   font-size: 0.75rem;
-  margin-top: 0.25rem;
+  margin-top: -1rem;
 }
 
 .container {
