@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1 class="mb-6">My Profile</h1>
+<div class="grid md:grid-cols-2 gap-4 mb-8">
+  <img class="rounded-full w-64 h-64 object-cover" src="{{ user.profile.image.url }}">
+  <div>
+    <h2 class="">{{ user.username }}</h2>
+    <p class="">{{ user.email }}</p>
+  </div>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset>
+    <legend class="text-2xl font-bold">Edit Profile</legend>
+    {{ user_form }}
+    {{ profile_form.as_p }}
+  </fieldset>
+
+  <button type="submit" class="btn mt-6">Update</button>
+</form>
+{% endblock main %}

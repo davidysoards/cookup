@@ -26,8 +26,12 @@ a {
   @apply font-semibold;
 }
 
-input {
-  @apply text-gray-800 px-2 py-1 block;
+input:not([type='file']) {
+  @apply text-gray-800 px-2 py-1 block w-64;
+}
+
+input[type='file'] {
+  @apply mt-2;
 }
 
 label {

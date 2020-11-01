@@ -4,14 +4,14 @@
 <form action="" method="post">
   {% csrf_token %}
   <fieldset>
-    <legend class="text-4xl font-bold">Register Now</legend>
+    <legend class="text-4xl font-bold">Login</legend>
     {{ form }}
   </fieldset>
-  <button type="submit" class="btn mt-6">Sign Up</button>
+  <button type="submit" class="btn mt-6">Log In</button>
 </form>
 
 <p class="text-sm mt-2 mb-4">
-  Already registered? <a href="{% url 'login' %}" class="pl-1">Sign In</a>
+   Need an account? <a href="{% url 'register' %}" class="pl-1">Register Now</a>
 </p>
 
 {% endblock main %}
