@@ -23,7 +23,13 @@ h4 {
 } */
 
 a {
-  @apply font-semibold;
+  @apply font-semibold text-blue-400 hover:underline;
+}
+
+header {
+  a {
+    @apply font-semibold text-gray-400 hover:text-white hover:no-underline;
+  }
 }
 
 input:not([type='file']) {

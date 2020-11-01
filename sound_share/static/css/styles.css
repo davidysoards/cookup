@@ -623,7 +623,28 @@ h4 {
 
 a {
   font-weight: 600;
+  --text-opacity: 1;
+  color: #63b3ed;
+  color: rgba(99, 179, 237, var(--text-opacity));
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+header a {
+    font-weight: 600;
+    --text-opacity: 1;
+    color: #cbd5e0;
+    color: rgba(203, 213, 224, var(--text-opacity));
+  }
+
+header a:hover {
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-decoration: none;
+  }
 
 input:not([type='file']) {
   display: block;
