@@ -79,7 +79,7 @@ WSGI_APPLICATION = "cookup.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "cookup",
+        "NAME": "cookup2",
         "USER": "davidsoards",
         "PASSWORD": "vRgri>q2rHWJ",
         "HOST": "localhost",

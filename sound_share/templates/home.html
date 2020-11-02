@@ -2,6 +2,11 @@
 
 {% block main %}
 <h1 class="mb-6">Home Page Hello!</h1>
+{% if user.is_authenticated  %}
+<div class="bg-gray-800 p-4">
+  <a href="{% url 'pack-create' %}" class="btn btn-primary">Share New</a>
+</div>
+{% endif %}
 <ul>
   {% for pack in packs %}
   <li class="bg-gray-800 p-4 border-2 border-gray-800 hover:border-white mt-4">
@@ -11,7 +16,7 @@
         Shared by <a href="#">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
       </div>
     </div>
-    <h3>{{ pack.title }}</h3>
+    <h3><a href="{% url 'pack-detail' pack.id pack.slug %}">{{ pack.title }}</a></h3>
     <p>{{ pack.description }}</p>
   </li>
   {% endfor %}

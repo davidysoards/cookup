@@ -658,6 +658,18 @@ input:not([type='file']) {
   width: 16rem;
 }
 
+textarea {
+  display: block;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  --text-opacity: 1;
+  color: #2d3748;
+  color: rgba(45, 55, 72, var(--text-opacity));
+  width: 100%;
+}
+
 input[type='file'] {
   margin-top: 0.5rem;
 }
@@ -676,18 +688,44 @@ label.required::after {
   }
 
 .btn {
-  --bg-opacity: 1;
-  background-color: #4299e1;
-  background-color: rgba(66, 153, 225, var(--bg-opacity));
+  display: inline-block;
   font-weight: 700;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
   --text-opacity: 1;
-  color: #2d3748;
-  color: rgba(45, 55, 72, var(--text-opacity));
+  color: #1a202c;
+  color: rgba(26, 32, 44, var(--text-opacity));
   text-transform: uppercase;
+}
+
+a.btn {
+  text-decoration: none;
+}
+
+.btn-primary {
+  --bg-opacity: 1;
+  background-color: #4299e1;
+  background-color: rgba(66, 153, 225, var(--bg-opacity));
+}
+
+.btn-primary:hover {
+  --bg-opacity: 1;
+  background-color: #63b3ed;
+  background-color: rgba(99, 179, 237, var(--bg-opacity));
+}
+
+.btn-danger {
+  --bg-opacity: 1;
+  background-color: #e53e3e;
+  background-color: rgba(229, 62, 62, var(--bg-opacity));
+}
+
+.btn-danger:hover {
+  --bg-opacity: 1;
+  background-color: #f56565;
+  background-color: rgba(245, 101, 101, var(--bg-opacity));
 }
 
 .helptext {
