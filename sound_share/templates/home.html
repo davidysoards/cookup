@@ -9,14 +9,15 @@
 {% endif %}
 <ul>
   {% for pack in packs %}
-  <li class="bg-gray-800 p-4 border-2 border-gray-800 hover:border-white mt-4">
-    <div class="flex items-center mb-2">
+  <li class="bg-gray-800 p-4 border-2 border-gray-800 hover:border-white mt-4 relative">
+    <a href="{% url 'pack-detail' pack.id pack.slug %}" class="absolute inset-0 z-0"></a>
+    <div class="flex items-center mb-3">
       <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ pack.author.profile.image.url }}" alt="{{ pack.author.username }}">
       <div class="w-full text-xs">
-        Shared by <a href="#">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
+        Shared by <a href="#" class="relative z-10">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
       </div>
     </div>
-    <h3><a href="{% url 'pack-detail' pack.id pack.slug %}">{{ pack.title }}</a></h3>
+    <h3 class="mb-1">{{ pack.title }}</h3>
     <p>{{ pack.description }}</p>
   </li>
   {% endfor %}
