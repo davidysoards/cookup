@@ -5,6 +5,7 @@ from .views import (
     PackCreateView,
     PackUpdateView,
     PackDeleteView,
+    UserPackListView,
 )
 from . import views
 
@@ -24,5 +25,6 @@ urlpatterns = [
         name="pack-delete",
     ),
     path("pack/new/", PackCreateView.as_view(), name="pack-create"),
+    path("shared-by/<str:username>", UserPackListView.as_view(), name="user-packs"),
     path("about", views.about, name="about"),
 ]

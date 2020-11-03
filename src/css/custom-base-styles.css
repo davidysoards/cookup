@@ -57,12 +57,21 @@ label {
   @apply px-4 py-2 text-gray-900 uppercase font-bold inline-block;
 }
 
-a.btn {
+.btn-sm {
+  @apply px-2 text-gray-900 uppercase font-bold inline-block;
+}
+
+a.btn,
+a.btn-sm {
   @apply no-underline;
 }
 
 .btn-primary {
   @apply bg-purple-500 hover:bg-purple-400;
+}
+
+.btn-secondary {
+  @apply bg-teal-500 hover:bg-teal-400;
 }
 
 .btn-danger {

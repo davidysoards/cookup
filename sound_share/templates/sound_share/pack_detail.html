@@ -6,7 +6,7 @@
   <div class="flex items-center mb-2">
     <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ object.author.profile.image.url }}" alt="{{ object.author.username }}">
     <div class="w-full text-xs">
-      Shared by <a href="#">{{ object.author }}</a> on <time>{{ object.date_posted|date:"F d, Y" }}</time>
+      Shared by <a href="{% url 'user-packs' pack.author.username %}">{{ object.author }}</a> on <time>{{ object.date_posted|date:"F d, Y" }}</time>
     </div>
   </div>
   <p>{{ object.description }}</p>

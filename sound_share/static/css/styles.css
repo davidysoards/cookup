@@ -700,7 +700,18 @@ label.required::after {
   text-transform: uppercase;
 }
 
-a.btn {
+.btn-sm {
+  display: inline-block;
+  font-weight: 700;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  --text-opacity: 1;
+  color: #1a202c;
+  color: rgba(26, 32, 44, var(--text-opacity));
+  text-transform: uppercase;
+}
+
+a.btn, a.btn-sm {
   text-decoration: none;
 }
 
@@ -714,6 +725,18 @@ a.btn {
   --bg-opacity: 1;
   background-color: #b794f4;
   background-color: rgba(183, 148, 244, var(--bg-opacity));
+}
+
+.btn-secondary {
+  --bg-opacity: 1;
+  background-color: #38b2ac;
+  background-color: rgba(56, 178, 172, var(--bg-opacity));
+}
+
+.btn-secondary:hover {
+  --bg-opacity: 1;
+  background-color: #4fd1c5;
+  background-color: rgba(79, 209, 197, var(--bg-opacity));
 }
 
 .btn-danger {

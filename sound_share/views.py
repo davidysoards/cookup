@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
     DetailView,
@@ -11,16 +12,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Pack
 
 
-def home(request):
-    context = {"packs": Pack.objects.all()}
-    return render(request, "home.html", context)
-
-
 class PackListView(ListView):
     model = Pack
     template_name = "home.html"  # default = sound_share/pack_list.html
-    context_object_name = "packs"
     ordering = ["-date_posted"]
+    paginate_by = 3
+
+
+class UserPackListView(ListView):
+    model = Pack
+    template_name = (
+        "sound_share/user_packs.html"  # default = sound_share/pack_list.html
+    )
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get("username"))
+        return Pack.objects.filter(author=user).order_by("-date_posted")
 
 
 class PackDetailView(DetailView):
