@@ -23,7 +23,7 @@ h4 {
 } */
 
 a {
-  @apply font-semibold text-blue-400 hover:underline;
+  @apply font-semibold text-teal-400 hover:underline;
 }
 
 header {
@@ -62,7 +62,7 @@ a.btn {
 }
 
 .btn-primary {
-  @apply bg-blue-500 hover:bg-blue-400;
+  @apply bg-purple-500 hover:bg-purple-400;
 }
 
 .btn-danger {
