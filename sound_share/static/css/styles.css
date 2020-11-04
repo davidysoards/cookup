@@ -757,6 +757,13 @@ a.btn, a.btn-sm {
   margin-top: -1rem;
 }
 
+.errorlist {
+  margin-bottom: 0.25rem;
+  --text-opacity: 1;
+  color: #f56565;
+  color: rgba(245, 101, 101, var(--text-opacity));
+}
+
 .container {
   width: 100%;
   margin-right: auto;

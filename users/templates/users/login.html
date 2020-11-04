@@ -8,9 +8,10 @@
     {{ form }}
   </fieldset>
   <button type="submit" class="btn btn-primary mt-6">Log In</button>
+  <a href="{% url 'password_reset' %}" class="text-sm ml-2">Forgot Password?</a>
 </form>
 
-<p class="text-sm mt-2 mb-4">
+<p class="text-sm mt-6 mb-4">
    Need an account? <a href="{% url 'register' %}" class="pl-1">Register Now</a>
 </p>
 

@@ -81,3 +81,7 @@ a.btn-sm {
 .helptext {
   @apply block text-xs -mt-4;
 }
+
+.errorlist {
+  @apply text-red-500 mb-1;
+}
