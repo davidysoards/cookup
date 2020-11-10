@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "g%_b+b-@xf-$y3dm3(@@@rkila@m1cor((fhb^#-snndae66)#"
+SECRET_KEY = os.environ.get("COOKUP_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = os.environ.get("DEBUG_VALUE")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["cookup-soundshare.herokuapp.com"]
 
 
 # Application definition
