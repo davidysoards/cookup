@@ -10,12 +10,12 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username} Profile"
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
 
-        # TODO delete old profile images
-        img = Image.open(self.image.path)
-        if img.height > 512 or img.width > 512:
-            output_size = (512, 512)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+    #     # TODO delete old profile images - create AWS Lambda function for resizing
+    #     img = Image.open(self.image.path)
+    #     if img.height > 512 or img.width > 512:
+    #         output_size = (512, 512)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)
