@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "npm run watch",
+    "start": "npm run build",
     "build": "rm -rf sound_share/static/css && cross-env NODE_ENV=production postcss src/css/tailwind.css -o sound_share/static/css/styles.css",
     "watch": "postcss src/css/tailwind.css -o sound_share/static/css/styles.css -w"
   },
