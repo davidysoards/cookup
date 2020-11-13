@@ -8,8 +8,8 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
 from .models import Pack
+from .forms import PackCreateForm
 
 
 class PackListView(ListView):
@@ -38,7 +38,7 @@ class PackDetailView(DetailView):
 
 class PackCreateView(LoginRequiredMixin, CreateView):
     model = Pack
-    fields = ["title", "description"]
+    form_class = PackCreateForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -47,7 +47,7 @@ class PackCreateView(LoginRequiredMixin, CreateView):
 
 class PackUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Pack
-    fields = ["title", "description"]
+    form_class = PackCreateForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user

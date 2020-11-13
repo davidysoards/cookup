@@ -10,11 +10,14 @@
     <div class="flex items-center mb-3">
       <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ pack.author.profile.image.url }}" alt="{{ pack.author.username }}">
       <div class="w-full text-xs">
-        Shared by <a href="#" class="relative z-10">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
+        Shared by <a href="{% url 'user-packs' pack.author.username %}" class="relative z-10">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
       </div>
     </div>
     <h3 class="mb-1">{{ pack.title }}</h3>
     <p>{{ pack.description }}</p>
+    {% if pack.audio_file %}
+      <audio src="{{ pack.audio_file.url }}" controls class="w-full mt-3 relative z-10"></audio>
+    {% endif %}
   </li>
   {% endfor %}
 </ul>

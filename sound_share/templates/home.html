@@ -19,6 +19,9 @@
     </div>
     <h3 class="mb-1">{{ pack.title }}</h3>
     <p>{{ pack.description }}</p>
+    {% if pack.audio_file %}
+      <audio src="{{ pack.audio_file.url }}" controls class="w-full mt-3 relative z-10"></audio>
+    {% endif %}
   </li>
   {% endfor %}
 </ul>

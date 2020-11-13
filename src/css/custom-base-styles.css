@@ -45,11 +45,11 @@ input[type='file'] {
 }
 
 label {
-  @apply mt-6 mb-1 relative inline-block;
+  @apply mt-6 mb-1 pr-4 relative inline-block;
   &.required::after {
     content: '*';
     position: absolute;
-    right: -0.6em;
+    right: 0.25em;
   }
 }
 

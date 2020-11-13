@@ -3,13 +3,14 @@
 {% block main %}
 <h1 class="mb-6">{{ object.title }}</h1>
 <div class="bg-gray-800 p-4 border-2 border-gray-800 mt-4">
-  <div class="flex items-center mb-2">
+  <div class="flex items-center mb-4">
     <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ object.author.profile.image.url }}" alt="{{ object.author.username }}">
     <div class="w-full text-xs">
       Shared by <a href="{% url 'user-packs' pack.author.username %}">{{ object.author }}</a> on <time>{{ object.date_posted|date:"F d, Y" }}</time>
     </div>
   </div>
-  <p>{{ object.description }}</p>
+  <p class="mb-4">{{ object.description }}</p>
+  <audio src="{{ pack.audio_file.url }}" controls class="w-full"></audio>
   {% if object.author == user %}
     <div class="mt-4">
       <a class="btn btn-primary" href="{% url 'pack-update' object.id object.slug %}">Update</a>

@@ -1,15 +1,8 @@
 from django import forms
+from cookup.forms import MyBaseModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
-
-# remove the default colon suffix from labels
-class BaseModelForm(forms.ModelForm):
-    required_css_class = "required"
-
-    def __init__(self, *args, **kwargs):
-        kwargs.setdefault("label_suffix", "")
-        super(BaseModelForm, self).__init__(*args, **kwargs)
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -25,7 +18,7 @@ class UserRegistrationForm(UserCreationForm):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
 
 
-class UserUpdateForm(BaseModelForm):
+class UserUpdateForm(MyBaseModelForm):
     email = forms.EmailField()
 
     class Meta:
@@ -33,7 +26,7 @@ class UserUpdateForm(BaseModelForm):
         fields = ["username", "email"]
 
 
-class ProfileUpdateForm(forms.ModelForm):
+class ProfileUpdateForm(MyBaseModelForm):
     class Meta:
         model = Profile
         fields = ["image"]

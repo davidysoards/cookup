@@ -10,6 +10,7 @@ from django.urls import reverse
 class Pack(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
+    audio_file = models.FileField(upload_to="audio_files", max_length=100, default="")
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, null=True, on_delete=SET_NULL)
     slug = models.SlugField(unique=True)
