@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1 class="mb-6">Home Page Hello!</h1>
+{% if user.is_authenticated  %}
+<div class="bg-gray-800 p-4">
+  <a href="{% url 'sound-create' %}" class="btn btn-primary">Share Sound</a>
+  <a href="{% url 'pack-create' %}" class="btn btn-primary ml-4">Share Pack</a>
+</div>
+{% endif %}
+<ul>
+  {% for sound in sound_list %}
+  <li class="bg-gray-800 p-4 border-2 border-gray-800 hover:border-white mt-4 relative">
+    <a href="{% url 'sound-detail' sound.id %}" class="absolute inset-0 z-0"></a>
+    <div class="flex items-center mb-3">
+      <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ sound.author.profile.image.url }}" alt="{{ sound.author.username }}">
+      <div class="w-full text-xs">
+        Shared by <a href="{% url 'user-packs' sound.author.username %}" class="relative z-10">{{ sound.author }}</a> on <time>{{ sound.date_posted|date:"F d, Y" }}</time>
+      </div>
+    </div>
+    <h3 class="mb-1">{{ sound.name }}</h3>
+    <p>{{ sound.key }} {{ sound.scale }}</p>
+    {% if sound.audio_file %}
+      <audio src="{{ sound.audio_file.url }}" controls class="w-full mt-3 relative z-10"></audio>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% if is_paginated %}
+  <div class="mt-2 flex justify-end items-center">
+    {% if page_obj.has_previous %}
+      <a href="?page=1" class="btn-sm btn-secondary">First</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class="ml-2 btn-sm btn-secondary">&#8592;</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <span class="font-bold ml-2 btn-sm btn-secondary">{{ num }}</span>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a href="?page={{ num }}" class="ml-2 btn-sm btn-secondary">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="ml-2 btn-sm btn-secondary">&#8594;</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}" class="ml-2 btn-sm btn-secondary">Last</a>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock main %}

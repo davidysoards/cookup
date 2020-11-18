@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block main %}
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset>
+    <legend class="text-4xl font-bold">Sound</legend>
+    {{ form.as_p }}
+  </fieldset>
+  <button type="submit" class="btn btn-primary mt-6">Share</button>
+</form>
+
+{% endblock main %}

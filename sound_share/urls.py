@@ -1,30 +1,43 @@
 from django.urls import path
-from .views import (
-    PackListView,
-    PackDetailView,
-    PackCreateView,
-    PackUpdateView,
-    PackDeleteView,
-    UserPackListView,
-)
 from . import views
 
 urlpatterns = [
-    path("", PackListView.as_view(), name="home"),
+    path("", views.SoundListView.as_view(), name="home"),
+    path("packs/", views.PackListView.as_view(), name="pack-list"),
     path(
-        "pack/<int:pk>/<slug:slug_url>/", PackDetailView.as_view(), name="pack-detail"
+        "sound/<int:pk>/",
+        views.SoundDetailView.as_view(),
+        name="sound-detail",
+    ),
+    path(
+        "sound/<int:pk>/update",
+        views.SoundUpdateView.as_view(),
+        name="sound-update",
+    ),
+    path(
+        "sound/<int:pk>/delete",
+        views.SoundDeleteView.as_view(),
+        name="sound-delete",
+    ),
+    path("sound/new/", views.SoundCreateView.as_view(), name="sound-create"),
+    path(
+        "pack/<int:pk>/<slug:slug_url>/",
+        views.PackDetailView.as_view(),
+        name="pack-detail",
     ),
     path(
         "pack/<int:pk>/<slug:slug_url>/update",
-        PackUpdateView.as_view(),
+        views.PackUpdateView.as_view(),
         name="pack-update",
     ),
     path(
         "pack/<int:pk>/<slug:slug_url>/delete",
-        PackDeleteView.as_view(),
+        views.PackDeleteView.as_view(),
         name="pack-delete",
     ),
-    path("pack/new/", PackCreateView.as_view(), name="pack-create"),
-    path("shared-by/<str:username>", UserPackListView.as_view(), name="user-packs"),
+    path("pack/new/", views.PackCreateView.as_view(), name="pack-create"),
+    path(
+        "shared-by/<str:username>", views.UserPackListView.as_view(), name="user-packs"
+    ),
     path("about", views.about, name="about"),
 ]

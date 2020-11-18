@@ -8,13 +8,69 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Pack
-from .forms import PackCreateForm
+from .models import Sound, Pack
+from .forms import SoundCreateForm, PackCreateForm
+from django.urls import reverse
+
+
+class SoundListView(ListView):
+    model = Sound
+    ordering = ["-date_posted"]
+    paginate_by = 3
+
+
+# class UserSoundListView(ListView):
+#     model = Sound
+#     template_name = (
+#         "sound_share/user_sounds.html"  # default = sound_share/sound_list.html
+#     )
+#     paginate_by = 3
+
+#     def get_queryset(self):
+#         user = get_object_or_404(User, username=self.kwargs.get("username"))
+#         return Sound.objects.filter(author=user).order_by("-date_posted")
+
+
+class SoundDetailView(DetailView):
+    model = Sound
+
+
+class SoundCreateView(LoginRequiredMixin, CreateView):
+    model = Sound
+    form_class = SoundCreateForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("sound-detail", kwargs={"pk": self.object.pk})
+
+
+class SoundUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Sound
+    form_class = SoundCreateForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+
+class SoundDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Sound
+    success_url = "/"
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
 
 
 class PackListView(ListView):
     model = Pack
-    template_name = "home.html"  # default = sound_share/pack_list.html
     ordering = ["-date_posted"]
     paginate_by = 3
 

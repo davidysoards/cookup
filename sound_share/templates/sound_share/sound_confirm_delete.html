@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+<form action="" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend class="text-4xl font-bold">Delete Sound</legend>
+    <h2>Are you sure you want to permanently delete this sound?</h2>
+  </fieldset>
+  <button type="submit" class="btn btn-danger mt-6">Yes, Delete</button>
+  <a href="{% url 'sound-detail' object.id %}" class="ml-4">Cancel</a>
+</form>
+
+{% endblock main %}

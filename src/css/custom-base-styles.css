@@ -44,6 +44,10 @@ input[type='file'] {
   @apply mt-2;
 }
 
+select {
+  @apply text-gray-800 block px-2 py-1 w-32;
+}
+
 label {
   @apply mt-6 mb-1 pr-4 relative inline-block;
   &.required::after {
