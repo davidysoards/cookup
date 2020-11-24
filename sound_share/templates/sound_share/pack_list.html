@@ -1,30 +1,35 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1 class="mb-6">Home Page Hello!</h1>
+<h1 class="mb-6">Packs</h1>
 {% if user.is_authenticated  %}
 <div class="bg-gray-800 p-4">
   <a href="{% url 'pack-create' %}" class="btn btn-primary">Share New</a>
 </div>
 {% endif %}
+
 <ul>
   {% for pack in pack_list %}
-  <li class="bg-gray-800 p-4 border-2 border-gray-800 hover:border-white mt-4 relative">
+  <li class="bg-gray-800 border-2 border-gray-800 hover:border-white mt-4 relative flex">
+    <img class="w-32 object-cover" src="{{ pack.image.url }}" alt="cover of {{ object.title }}">
     <a href="{% url 'pack-detail' pack.id pack.slug %}" class="absolute inset-0 z-0"></a>
-    <div class="flex items-center mb-3">
-      <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ pack.author.profile.image.url }}" alt="{{ pack.author.username }}">
-      <div class="w-full text-xs">
-        Shared by <a href="{% url 'user-packs' pack.author.username %}" class="relative z-10">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
+    <div class="p-4 min-w-0">
+      <div class="flex items-center mb-3">
+        <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ pack.author.profile.image.url }}" alt="{{ pack.author.username }}">
+        <div class="w-full text-xs">
+          Shared by <a href="{% url 'user-packs' pack.author.username %}" class="relative z-10">{{ pack.author }}</a> on <time>{{ pack.date_posted|date:"F d, Y" }}</time>
+        </div>
       </div>
+      <h3 class="text-lg mb-1">{{ pack.title }}</h3>
+      <p class="hidden sm:block truncate">{{ pack.description }}</p>
+      {% if pack.audio_file %}
+        <audio src="{{ pack.audio_file.url }}" controls class="w-full mt-3 relative z-10"></audio>
+      {% endif %}
     </div>
-    <h3 class="mb-1">{{ pack.title }}</h3>
-    <p>{{ pack.description }}</p>
-    {% if pack.audio_file %}
-      <audio src="{{ pack.audio_file.url }}" controls class="w-full mt-3 relative z-10"></audio>
-    {% endif %}
   </li>
   {% endfor %}
 </ul>
+
 {% if is_paginated %}
   <div class="mt-2 flex justify-end items-center">
     {% if page_obj.has_previous %}

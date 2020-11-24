@@ -3,7 +3,7 @@ from cookup.forms import MyBaseModelForm
 from .models import Sound, Pack
 
 
-class SoundCreateForm(MyBaseModelForm):
+class SoundCreateForm(forms.ModelForm):
     KEYS = [
         ("", "----"),
         (1, "A"),
@@ -26,14 +26,23 @@ class SoundCreateForm(MyBaseModelForm):
         ("m", "minor"),
     ]
 
+    required_css_class = "required"
+
+    pack = forms.ModelChoiceField(queryset=None)
     key = forms.ChoiceField(choices=KEYS, required=False)
     scale = forms.ChoiceField(choices=SCALES, required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user")
+        kwargs.setdefault("label_suffix", "")
+        super(SoundCreateForm, self).__init__(*args, **kwargs)
+        self.fields["pack"].queryset = Pack.objects.filter(author=self.user)
 
     class Meta:
         model = Sound
         fields = [
-            "name",
             "audio_file",
+            "pack",
             "key",
             "scale",
         ]
@@ -42,4 +51,4 @@ class SoundCreateForm(MyBaseModelForm):
 class PackCreateForm(MyBaseModelForm):
     class Meta:
         model = Pack
-        fields = ["title", "description", "audio_file"]
+        fields = ["title", "description", "image"]

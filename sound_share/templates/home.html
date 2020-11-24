@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1 class="mb-6">Home Page</h1>
+{% if user.is_authenticated  %}
+<div class="bg-gray-800 p-4">
+  <a href="{% url 'pack-create' %}" class="btn btn-primary ml-4">Create New Pack</a>
+  <a href="{% url 'sound-create' %}" class="btn btn-primary">Share Sound</a>
+</div>
+{% endif %}
+{% endblock main %}

@@ -2,8 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.SoundListView.as_view(), name="home"),
-    path("packs/", views.PackListView.as_view(), name="pack-list"),
+    # SOUND
+    path("", views.home, name="home"),
+    path("sounds/", views.SoundListView.as_view(), name="sound-list"),
     path(
         "sound/<int:pk>/",
         views.SoundDetailView.as_view(),
@@ -20,6 +21,8 @@ urlpatterns = [
         name="sound-delete",
     ),
     path("sound/new/", views.SoundCreateView.as_view(), name="sound-create"),
+    # PACK
+    path("packs/", views.PackListView.as_view(), name="pack-list"),
     path(
         "pack/<int:pk>/<slug:slug_url>/",
         views.PackDetailView.as_view(),

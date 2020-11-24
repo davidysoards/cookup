@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1 class="mb-6">Home Page Hello!</h1>
+<h1 class="mb-6">Sounds</h1>
 {% if user.is_authenticated  %}
 <div class="bg-gray-800 p-4">
   <a href="{% url 'sound-create' %}" class="btn btn-primary">Share Sound</a>
   <a href="{% url 'pack-create' %}" class="btn btn-primary ml-4">Share Pack</a>
 </div>
 {% endif %}
+
 <ul>
   {% for sound in sound_list %}
   <li class="bg-gray-800 p-4 border-2 border-gray-800 hover:border-white mt-4 relative">
@@ -26,6 +27,7 @@
   </li>
   {% endfor %}
 </ul>
+
 {% if is_paginated %}
   <div class="mt-2 flex justify-end items-center">
     {% if page_obj.has_previous %}

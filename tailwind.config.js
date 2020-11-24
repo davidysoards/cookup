@@ -21,7 +21,7 @@ module.exports = {
     },
     extend: {
       screens: {
-        '2xl': '1560px',
+        '2xl': '1536px',
       },
     },
     variants: {},

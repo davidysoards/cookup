@@ -37,7 +37,7 @@ input:not([type='file']) {
 }
 
 textarea {
-  @apply text-gray-800 px-2 py-1 block w-full;
+  @apply text-gray-800 px-2 py-1 block w-full h-16;
 }
 
 input[type='file'] {
@@ -45,7 +45,7 @@ input[type='file'] {
 }
 
 select {
-  @apply text-gray-800 block px-2 py-1 w-32;
+  @apply text-gray-800 block px-2 py-1 w-64;
 }
 
 label {

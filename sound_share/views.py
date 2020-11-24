@@ -16,7 +16,7 @@ from django.urls import reverse
 class SoundListView(ListView):
     model = Sound
     ordering = ["-date_posted"]
-    paginate_by = 3
+    paginate_by = 20
 
 
 # class UserSoundListView(ListView):
@@ -46,6 +46,11 @@ class SoundCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse("sound-detail", kwargs={"pk": self.object.pk})
 
+    def get_form_kwargs(self):
+        kwargs = super(SoundCreateView, self).get_form_kwargs()
+        kwargs.update({"user": self.request.user})
+        return kwargs
+
 
 class SoundUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Sound
@@ -72,7 +77,7 @@ class SoundDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class PackListView(ListView):
     model = Pack
     ordering = ["-date_posted"]
-    paginate_by = 3
+    paginate_by = 10
 
 
 class UserPackListView(ListView):
@@ -80,7 +85,7 @@ class UserPackListView(ListView):
     template_name = (
         "sound_share/user_packs.html"  # default = sound_share/pack_list.html
     )
-    paginate_by = 3
+    paginate_by = 10
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get("username"))
@@ -121,6 +126,10 @@ class PackDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+
+
+def home(request):
+    return render(request, "home.html")
 
 
 def about(request):
