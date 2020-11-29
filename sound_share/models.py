@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.contrib import admin
 from django.urls import reverse
+import os
 
 
 class Pack(models.Model):
@@ -46,6 +47,10 @@ class Sound(models.Model):
 
     def __str__(self):
         return self.name
+
+    # get the file name without the path
+    def filename(self):
+        return os.path.basename(self.audio_file.name)
 
     # def get_absolute_url(self):
     #     return reverse("sound-detail", kwargs={"pk": self.pk})

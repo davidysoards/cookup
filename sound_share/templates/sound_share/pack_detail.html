@@ -1,27 +1,32 @@
 {% extends "base.html" %}
 
 {% block main %}
-<div class="md:flex items-center">
+<div class="md:flex items-center mb-6">
   <img class="w-64 mx-auto md:mx-0 mb-4 md:mb-0" src="{{ object.image.url }}" alt="cover of {{ object.title }}">
-  <div class="md:ml-4">
+  <div class="md:ml-6">
     <h1 class="md:text-5xl mb-2 text-center md:text-left">{{ object.title }}</h1>
-    <div class="flex items-center mb-4 justify-center">
+    <div class="flex items-center mb-8 justify-center">
       <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{ object.author.profile.image.url }}" alt="{{ object.author.username }}">
       <div class="text-xs">
         Shared by <a href="{% url 'user-packs' object.author.username %}">{{ object.author }}</a> on <time>{{ object.date_posted|date:"F d, Y" }}</time>
       </div>
     </div>
+    {% if object.author == user %}
+      <div class="mt-4 text-center md:text-left">
+        <a class="btn btn-primary" href="{% url 'pack-update' object.id object.slug %}">Update</a>
+        <a class="btn btn-danger ml-4" href="{% url 'pack-delete' object.id object.slug %}">Delete</a>
+      </div>
+    {% endif %}
   </div>
 </div>
 <div class="bg-gray-800 p-4 border-2 border-gray-800 mt-4">
-  <p class="mb-4">{{ object.description }}</p>
-  <audio src="{{ object.audio_file.url }}" controls class="w-full"></audio>
+  <p class="mb-6">{{ object.description }}</p>
+  {% for sound in object.sound_set.all %}
+    <p class="mb-2 font-bold font-mono">{{ sound.filename }}</p>
+    <audio src="{{ sound.audio_file.url }}" controls class="w-full mb-6"></audio>
+  {% endfor %}
   {% if object.author == user %}
-    <div class="mt-4">
-      <a class="btn btn-primary" href="{% url 'pack-update' object.id object.slug %}">Update</a>
-      <a class="btn btn-danger ml-4" href="{% url 'pack-delete' object.id object.slug %}">Delete</a>
-    </div>
+    <a class="btn btn-primary" href="{% url 'sound-create' %}?pack={{ object.pk }}">+</a>
   {% endif %}
-
 </div>
 {% endblock main %}

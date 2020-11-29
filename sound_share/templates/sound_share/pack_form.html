@@ -8,6 +8,9 @@
     {{ form }}
   </fieldset>
   <button type="submit" class="btn btn-primary mt-6">Share</button>
+  {% if form.instance.id %}
+    <a href="{% url 'pack-detail' object.id object.slug %}" class="ml-4">Cancel</a>
+  {% endif %}
 </form>
 
 {% endblock main %}

@@ -51,6 +51,13 @@ class SoundCreateView(LoginRequiredMixin, CreateView):
         kwargs.update({"user": self.request.user})
         return kwargs
 
+    # pass in intial input values using URL params
+    def get_initial(self):
+        initial = {}
+        for x in self.request.GET:
+            initial[x] = self.request.GET[x]
+        return initial
+
 
 class SoundUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Sound

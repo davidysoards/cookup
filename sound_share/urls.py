@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     # SOUND
-    path("", views.home, name="home"),
+    # path("", views.home, name="home"),
+    path("", views.PackListView.as_view(), name="home"),
     path("sounds/", views.SoundListView.as_view(), name="sound-list"),
     path(
         "sound/<int:pk>/",
@@ -22,7 +23,7 @@ urlpatterns = [
     ),
     path("sound/new/", views.SoundCreateView.as_view(), name="sound-create"),
     # PACK
-    path("packs/", views.PackListView.as_view(), name="pack-list"),
+    # path("packs/", views.PackListView.as_view(), name="pack-list"),
     path(
         "pack/<int:pk>/<slug:slug_url>/",
         views.PackDetailView.as_view(),
