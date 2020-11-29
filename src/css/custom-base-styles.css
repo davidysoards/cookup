@@ -32,7 +32,7 @@ header {
   }
 }
 
-input:not([type='file']) {
+input:not([type='file']):not([type='checkbox']) {
   @apply text-gray-800 px-2 py-1 block w-64;
 }
 
