@@ -31,6 +31,7 @@ class SoundCreateForm(forms.ModelForm):
     pack = forms.ModelChoiceField(queryset=None)
     key = forms.ChoiceField(choices=KEYS, required=False)
     scale = forms.ChoiceField(choices=SCALES, required=False)
+    tempo = forms.CharField(widget=forms.NumberInput(attrs={"min": 1, "max": 300}))
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
@@ -45,6 +46,7 @@ class SoundCreateForm(forms.ModelForm):
             "pack",
             "key",
             "scale",
+            "tempo",
         ]
 
 

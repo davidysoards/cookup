@@ -40,6 +40,7 @@ class Sound(models.Model):
     audio_file = models.FileField(upload_to="audio_files", max_length=100)
     key = models.CharField(null=True, max_length=20)
     scale = models.CharField(null=True, max_length=20)
+    tempo = models.IntegerField(null=True)
     pack = models.ForeignKey(Pack, null=True, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, null=True, on_delete=SET_NULL)
