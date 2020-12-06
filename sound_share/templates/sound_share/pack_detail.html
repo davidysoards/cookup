@@ -22,8 +22,12 @@
 <div class="bg-gray-800 p-4 border-2 border-gray-800 mt-4">
   <p class="mb-6">{{ object.description }}</p>
   {% for sound in object.sound_set.all %}
-    <p class="mb-2 font-bold font-mono">{{ sound.filename }}</p>
-    <audio src="{{ sound.audio_file.url }}" controls class="w-full mb-6"></audio>
+  <div class="md:grid grid-cols-sound gap-4 items-center mb-6">
+    <p class="font-mono truncate mb-2 md:mb-0">{{ sound.filename }}</p>
+    <audio src="{{ sound.audio_file.url }}" controls class="w-full"></audio>
+    <p class="hidden md:block">{{ keys|get_item:sound.key }}{{ sound.scale }}</p>
+    <p class="hidden md:block">{{ sound.tempo }}</p>
+  </div>
   {% endfor %}
   {% if object.author == user %}
     <a class="btn btn-primary" href="{% url 'sound-create' %}?pack={{ object.pk }}">+</a>

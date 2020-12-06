@@ -11,6 +11,28 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Sound, Pack
 from .forms import SoundCreateForm, PackCreateForm
 from django.urls import reverse
+from cookup.custom_tags import get_item
+
+
+KEYS = {
+    "1": "A",
+    "2": "A#/B♭",
+    "3": "B",
+    "4": "C",
+    "5": "C#/D♭",
+    "6": "D",
+    "7": "D#/E♭",
+    "8": "E",
+    "9": "F",
+    "10": "F#/G♭",
+    "11": "G",
+    "12": "G#/A♭",
+}
+
+SCALES = {
+    "M": "Major",
+    "m": "minor",
+}
 
 
 class SoundListView(ListView):
@@ -68,8 +90,8 @@ class SoundUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
+        sound = self.get_object()
+        return self.request.user == sound.author
 
 
 class SoundDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -77,8 +99,8 @@ class SoundDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = "/"
 
     def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
+        sound = self.get_object()
+        return self.request.user == sound.author
 
 
 class PackListView(ListView):
@@ -102,6 +124,14 @@ class UserPackListView(ListView):
 class PackDetailView(DetailView):
     model = Pack
     slug_url_kwarg = "slug_url"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context["keys"] = KEYS
+        context["scales"] = SCALES
+        return context
 
 
 class PackCreateView(LoginRequiredMixin, CreateView):
