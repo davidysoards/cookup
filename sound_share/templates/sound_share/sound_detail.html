@@ -9,8 +9,12 @@
       Shared by <a href="{% url 'user-packs' object.author.username %}">{{ object.author }}</a> on <time>{{ object.date_posted|date:"F d, Y" }}</time>
     </div>
   </div>
-  <p class="mb-4">{{ object.key }} {{ object.scale }}</p>
-  <audio src="{{ object.audio_file.url }}" controls class="w-full"></audio>
+  <div class="md:grid grid-cols-sound gap-4 items-center mb-6">
+    <p class="font-mono truncate mb-2 md:mb-0">{{ object.filename }}</p>
+    <audio src="{{ object.audio_file.url }}" controls class="w-full"></audio>
+    <p class="hidden md:block">{{ keys|get_item:object.key }}{{ object.scale }}</p>
+    <p class="hidden md:block">{{ object.tempo }}</p>
+  </div>
   {% if object.author == user %}
     <div class="mt-4">
       <a class="btn btn-primary" href="{% url 'sound-update' object.id %}">Update</a>

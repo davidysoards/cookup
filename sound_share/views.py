@@ -56,6 +56,12 @@ class SoundListView(ListView):
 class SoundDetailView(DetailView):
     model = Sound
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["keys"] = KEYS
+        context["scales"] = SCALES
+        return context
+
 
 class SoundCreateView(LoginRequiredMixin, CreateView):
     model = Sound
@@ -88,6 +94,14 @@ class SoundUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("sound-detail", kwargs={"pk": self.object.pk})
+
+    def get_form_kwargs(self):
+        kwargs = super(SoundUpdateView, self).get_form_kwargs()
+        kwargs.update({"user": self.request.user})
+        return kwargs
 
     def test_func(self):
         sound = self.get_object()
@@ -128,7 +142,7 @@ class PackDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
+        ## Add in the KEYS and SCALES
         context["keys"] = KEYS
         context["scales"] = SCALES
         return context
@@ -152,8 +166,8 @@ class PackUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
+        pack = self.get_object()
+        return self.request.user == pack.author
 
 
 class PackDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -161,8 +175,8 @@ class PackDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = "/"
 
     def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
+        pack = self.get_object()
+        return self.request.user == pack.author
 
 
 def home(request):
