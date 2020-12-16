@@ -7,6 +7,9 @@
     "build": "rm -rf sound_share/static/css && cross-env NODE_ENV=production postcss src/css/tailwind.css -o sound_share/static/css/styles.css",
     "watch": "postcss src/css/tailwind.css -o sound_share/static/css/styles.css -w"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "author": "David Soards",
   "license": "ISC",
   "dependencies": {
