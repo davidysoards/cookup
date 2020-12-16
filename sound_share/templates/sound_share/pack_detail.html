@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block main %}
 <div class="md:flex items-center mb-6">
@@ -22,11 +23,18 @@
 <div class="bg-gray-800 p-4 border-2 border-gray-800 mt-4">
   <p class="mb-6">{{ object.description }}</p>
   {% for sound in object.sound_set.all %}
-  <div class="md:grid grid-cols-sound gap-4 items-center mb-6">
+  <div class="md:grid {% if object.author == user %}grid-cols-sound-edit{% else %}grid-cols-sound{% endif %} gap-4 items-center mb-6">
     <p class="font-mono truncate mb-2 md:mb-0">{{ sound.filename }}</p>
     <audio src="{{ sound.audio_file.url }}" controls class="w-full"></audio>
     <p class="hidden md:block">{{ keys|get_item:sound.key }}{{ sound.scale }}</p>
     <p class="hidden md:block">{{ sound.tempo }}</p>
+    {% if object.author == user %}
+      <a href="{% url 'sound-detail' sound.pk %}" class="hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-4">
+          <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z" />
+        </svg>
+      </a>
+    {% endif %}
   </div>
   {% endfor %}
   {% if object.author == user %}

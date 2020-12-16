@@ -16,6 +16,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         sound: 'minmax(0, 16rem) 10fr 1fr 1fr',
+        'sound-edit': 'minmax(0, 16rem) 10fr 1fr 1fr 1fr',
       },
     },
   },
