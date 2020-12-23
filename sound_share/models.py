@@ -16,7 +16,7 @@ class Pack(models.Model):
     )
     # audio_file = models.FileField(upload_to="audio_files", max_length=100, default="")
     date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, null=True, on_delete=SET_NULL)
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
 
     def __str__(self):
