@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
-from io import BytesIO
 from django.core.files import File
 from pathlib import Path
+from PIL import Image
+from io import BytesIO
 
 image_types = {
     "jpg": "JPEG",
@@ -24,7 +24,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-
+        # resize and crop image before saving if over 512 height or width
         img = Image.open(self.image)
         if img.height > 512 or img.width > 512:
             buffer = BytesIO()
@@ -36,5 +36,5 @@ class Profile(models.Model):
             # First we save the image data into the buffer
             img.save(buffer, format=img_format)
             file_object = File(buffer)
-            # Now we actually save the data to S3 through the storage backend
+            # then we save the data to S3 through django-storages
             self.image.save(img_filename, file_object)

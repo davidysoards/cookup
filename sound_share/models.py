@@ -47,7 +47,7 @@ class Sound(models.Model):
     # slug = models.SlugField(unique=True)
 
     def __str__(self):
-        return self.name
+        return os.path.basename(self.audio_file.name).split(".")[-2]
 
     # get the file name without the path
     def filename(self):
