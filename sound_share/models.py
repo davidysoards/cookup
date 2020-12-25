@@ -7,6 +7,8 @@ from django.contrib import admin
 from django.urls import reverse
 import os
 
+from cookup.utils import image_resize
+
 
 class Pack(models.Model):
     title = models.CharField(max_length=50)
@@ -24,6 +26,7 @@ class Pack(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = self.slug or slugify(self.title)
+        image_resize(self.image, 512, 512)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

@@ -29,7 +29,7 @@
     </header>
     <div class="container max-w-screen-lg md:flex py-4 px-4 lg:px-0">
       <main class="{% if object.id %}w-full{% else %}md:w-2/3 md:mr-6{% endif %} pt-4 pb-8">
-        {% if messages %}w
+        {% if messages %}
           {% for message in messages %}
             <div class="py-1 px-2 {% if message.tags == 'success' %}bg-green-500{% elif message.tags == 'warning' %}bg-yellow-500{% elif message.tags == 'error' %}bg-red-500{% elif message.tags == 'info' %}bg-blue-500{% endif %}">
               {{ message }}
